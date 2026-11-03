@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\avr-toolchain\\bin\\avr-gcc.exe",
+            "compilerArgs": [
+                "-mmcu=attiny3216"
+            ]
+        }
+    ],
+    "version": 4
+} 

@@ -1,0 +1,67 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "AVR: Build",
+      "type": "shell",
+      "command": "C:\\avr-toolchain\\bin\\avr-gcc.exe",
+      "args": [
+        "-mmcu=attiny3216",
+        "-DF_CPU=3333333UL",
+        "-Os",
+        "-Wall",
+        "-o",
+        "main.elf",
+        "main.c"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "AVR: HEX",
+      "type": "shell",
+      "command": "C:\\avr-toolchain\\bin\\avr-objcopy.exe",
+      "args": [
+        "-O",
+        "ihex",
+        "-R",
+        ".eeprom",
+        "main.elf",
+        "main.hex"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "AVR: Build",
+      "problemMatcher": []
+    },
+    {
+      "label": "AVR: Flash",
+      "type": "shell",
+      "command": "C:\\avrdude\\avrdude.exe",
+      "args": [
+        "-c",
+        "serialupdi",
+        "-P",
+        "COM5",
+        "-p",
+        "t3216",
+        "-b",
+        "115200",
+        "-U",
+        "flash:w:main.hex:i"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "AVR: HEX",
+      "problemMatcher": []
+    }
+  ]
+}
